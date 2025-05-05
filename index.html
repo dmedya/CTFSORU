@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CTF Sorusu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .image-container {
+            margin-top: 20px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        .notification {
+            margin-top: 10px;
+            font-size: 18px;
+            color: green;
+            visibility: hidden;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>YILDIZCTI</h1>
+    <div class="image-container">
+        <img src="foto.png" width="300">
+    </div>
+    <p>"Merhaba Mitre Attack'ta Cozy Bear isimli Rusya Devlet destekli bir APT grubu arıyorum, ismini bulamadım, yardım eder misin?"</p>
+    <input type="text" id="userAnswer" placeholder="Cevap">
+    <div class="notification" id="notification">Correct!</div>
+
+    <h2></h2>
+    <p>Bu grup, Alman Siyasi Partilerini hedef almak için hangi backdoor'u kullandı?</p>
+    <input type="text" id="backdoorAnswer" placeholder="Cevap">
+    <div class="notification" id="backdoorNotification">Correct!</div>
+
+    <script>
+        let firstAnswerCorrect = false;
+        let secondAnswerCorrect = false;
+
+        // İlk sorunun cevabı için kontrol
+        document.getElementById('userAnswer').addEventListener('input', function() {
+            const answer = this.value.trim();
+            const notification = document.getElementById('notification');
+            
+            // Doğru cevap kontrolü
+            if (answer.toLowerCase() === 'apt29') {
+                firstAnswerCorrect = true;
+                notification.style.visibility = 'visible';
+            } else {
+                firstAnswerCorrect = false;
+                notification.style.visibility = 'hidden';
+            }
+
+            checkPopUp();
+        });
+
+        // İkinci sorunun cevabı için kontrol
+        document.getElementById('backdoorAnswer').addEventListener('input', function() {
+            const backdoorAnswer = this.value.trim().toUpperCase();
+            const backdoorNotification = document.getElementById('backdoorNotification');
+            
+            // Doğru cevap kontrolü
+            if (backdoorAnswer === 'WINELOADER') {
+                secondAnswerCorrect = true;
+                backdoorNotification.style.visibility = 'visible';
+            } else {
+                secondAnswerCorrect = false;
+                backdoorNotification.style.visibility = 'hidden';
+            }
+
+            checkPopUp();
+        });
+
+        // Pop-up kontrolü
+        function checkPopUp() {
+            if (firstAnswerCorrect && secondAnswerCorrect) {
+                alert("aHR0cHM6Ly9naXRodWIuY29tL2RtZWR5YQ==");
+            }
+        }
+    </script>
+
+</body>
+</html>
